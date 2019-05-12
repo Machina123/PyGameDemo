@@ -28,6 +28,9 @@ def event_handler():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit(0)
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                sys.exit(0)
 
 def game_loop():
     if gui is not None:
