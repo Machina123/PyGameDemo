@@ -1,5 +1,3 @@
-import os
-
 RESOLUTION = (1920, 1080)
 WINDOW_TITLE = "Projekt zaliczeniowy"
 TICKRATE = 30
