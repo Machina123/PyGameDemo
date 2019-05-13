@@ -9,6 +9,7 @@ class GameState():
         self.__sorter = BubbleSort(self.__word)
         self.__curr_state = 0
         self.__state_progress = dict()
+        self.__tickcount = 0
         self.__init_state_progress()
 
     def __init_state_progress(self):
@@ -25,11 +26,18 @@ class GameState():
             self.__curr_state = curr_state
             self.__state_progress[curr_state] = True
 
+    def set_state(self, newstate):
+        self.__state = newstate
+        self.check_state()
+
     def get_current_state_id(self):
         return self.__curr_state
 
     def get_starting_word(self):
         return self.__word
+
+    def tick(self):
+        self.__tickcount += 1
 
     @staticmethod
     def initialize():

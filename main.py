@@ -13,6 +13,7 @@ flags = pygame.DOUBLEBUF | pygame.HWSURFACE | pygame.HWACCEL
 if sys.platform.lower().startswith("darwin"):
     flags |= pygame.FULLSCREEN
 
+
 screen = pygame.display.set_mode(constants.RESOLUTION, flags=flags)
 pygame.display.set_caption(constants.WINDOW_TITLE)
 clock = pygame.time.Clock()
@@ -33,6 +34,7 @@ def event_handler():
                 sys.exit(0)
 
 def game_loop():
+    gamestate.tick()
     if gui is not None:
         gui.draw(screen)
 
