@@ -44,6 +44,10 @@ class GUI():
     def load_image(path = ""):
         return pygame.image.load(constants.get_path(path))
 
+    def get_click(self, event):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            x, y = event.pos
+
 
 class Letter(pygame.sprite.Sprite):
     def __init__(self, char=""):
@@ -89,36 +93,40 @@ class Frame(pygame.sprite.Sprite):
         self.rect.x = x
         self.rect.y = y
 
-class ButtonLeft(pygame.sprite.Sprite):
-
-    def __init__(self):
+class Button(pygame.sprite.Sprite):
+    def __init__(self, image_path, clicked_image_path):
         super().__init__()
-        self.image = GUI.load_image("assets/button_L.png")
+        self._img_path = image_path
+        self._clicked_img_path = clicked_image_path
+        self.image = GUI.load_image(self._img_path)
         self.rect = self.image.get_rect()
-        self.rect.x, self.rect.y = constants.BUTTON_LEFT_POS
+        self._click_action = None
 
     def draw(self, surface):
         surface.blit(self.image, self.rect)
 
+    def set_pos(self, x, y):
+        self.rect.x = x
+        self.rect.y = y
 
-class ButtonRight(pygame.sprite.Sprite):
+    def clicked(self, event_x, event_y):
+        return self.rect.collidepoint(event_x, event_y)
 
-    def __init__(self):
-        super().__init__()
-        self.image = GUI.load_image("assets/button_R.png")
-        self.rect = self.image.get_rect()
-        self.rect.x, self.rect.y = constants.BUTTON_RIGHT_POS
-
-    def draw(self, surface):
-        surface.blit(self.image, self.rect)
-
-class ButtonSwap(pygame.sprite.Sprite):
+class ButtonLeft(Button):
 
     def __init__(self):
-        super().__init__()
-        self.image = GUI.load_image("assets/button_O.png")
-        self.rect = self.image.get_rect()
-        self.rect.x, self.rect.y = constants.BUTTON_SWAP_POS
+        super().__init__("assets/button_L.png", "assets/button_L_light.png")
+        self.set_pos(constants.BUTTON_LEFT_POS[0], constants.BUTTON_LEFT_POS[1])
 
-    def draw(self, surface):
-        surface.blit(self.image, self.rect)
+class ButtonRight(Button):
+
+    def __init__(self):
+        super().__init__("assets/button_R.png", "assets/button_R_light.png")
+        self.set_pos(constants.BUTTON_RIGHT_POS[0], constants.BUTTON_RIGHT_POS[1])
+
+class ButtonSwap(Button):
+
+    def __init__(self):
+        super().__init__("assets/button_O.png","assets/button_O_light.png")
+        self.set_pos(constants.BUTTON_SWAP_POS[0], constants.BUTTON_SWAP_POS[1])
+
