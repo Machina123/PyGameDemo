@@ -42,5 +42,5 @@ class GameState():
     @staticmethod
     def initialize():
         return GameState(
-            word=RNGsus.get_word()
+            word=RNGsus.get_word_unique()
         )
