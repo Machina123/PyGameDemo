@@ -13,7 +13,6 @@ flags = pygame.DOUBLEBUF | pygame.HWSURFACE | pygame.HWACCEL
 if sys.platform.lower().startswith("darwin"):
     flags |= pygame.FULLSCREEN
 
-
 screen = pygame.display.set_mode(constants.RESOLUTION, flags=flags)
 pygame.display.set_caption(constants.WINDOW_TITLE)
 clock = pygame.time.Clock()
@@ -27,7 +26,22 @@ def prepare_game():
 
 def event_handler():
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            print(event)
+            if event.button == 1:
+                action = gui.check_click(event.pos)
+                if action == constants.BUTTON_LEFT_ACTION:
+                    gamestate.move_frame("l")
+                    gui.move_frame(gamestate.get_frame_pos())
+                elif action == constants.BUTTON_RIGHT_ACTION:
+                    gamestate.move_frame("r")
+                    gui.move_frame(gamestate.get_frame_pos())
+                elif action == constants.BUTTON_SWAP_ACTION:
+                    gamestate.swap()
+                    gui.swap_letters(gamestate.get_frame_pos())
+        elif event.type == pygame.MOUSEBUTTONUP:
+            gui.redraw_buttons_not_clicked()
+        elif event.type == pygame.QUIT:
             sys.exit(0)
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:

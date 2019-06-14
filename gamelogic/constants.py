@@ -1,6 +1,6 @@
 import os
 
-RESOLUTION = (1920, 1080)
+RESOLUTION = (1920,1080)
 WINDOW_TITLE = "Projekt zaliczeniowy"
 TICKRATE = 30
 ALPHABET = "ABCDEFGHJKNOPRSXZ"
@@ -10,6 +10,11 @@ LETTER_BEGIN_Y = 182
 BUTTON_LEFT_POS = (550, 325)
 BUTTON_RIGHT_POS = (700, 325)
 BUTTON_SWAP_POS = (850, 325)
+BUTTON_LEFT_ACTION = "left"
+BUTTON_RIGHT_ACTION = "right"
+BUTTON_SWAP_ACTION = "swap"
+MOVE_LEFT_ACTION = "l"
+MOVE_RIGHT_ACTION = "r"
 
 def get_path(relative_path = ""):
     return os.path.join(os.getcwd(), relative_path)
