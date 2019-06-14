@@ -1,7 +1,10 @@
+import os
+import pygame
+import sys
+
 from gamelogic import constants
 from gamelogic.gamestate import GameState
 from gamelogic.gui import GUI
-import pygame, os, sys
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 pygame.init()
@@ -20,9 +23,11 @@ clock = pygame.time.Clock()
 gamestate = GameState.initialize()
 gui = GUI(gamestate.get_starting_word())
 
+
 def prepare_game():
     gui._debug()
     gamestate._debug()
+
 
 def event_handler():
     for event in pygame.event.get():
@@ -46,14 +51,16 @@ def event_handler():
             if event.key == pygame.K_ESCAPE:
                 sys.exit(0)
 
+
 def game_loop():
     if gui is not None:
         gui.draw(screen)
         gui.update_swaps_left_text(gamestate.get_moves_left())
 
+
 prepare_game()
 # main loop
-while(True):
+while (True):
     event_handler()
     game_loop()
     if gamestate.is_finished():

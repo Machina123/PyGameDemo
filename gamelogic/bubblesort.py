@@ -1,6 +1,6 @@
 class BubbleSort():
 
-    def __init__(self, word = ""):
+    def __init__(self, word=""):
         self.word = list(word)
         self.states = dict()
         self.states[0] = ''.join(self.word)
@@ -15,8 +15,8 @@ class BubbleSort():
         curr_state = 0
         for i in range(len(self.word) - 1):
             for j in range(len(self.word) - 1):
-                if self.word[j] > self.word[j+1]:
-                    self.word[j], self.word[j+1] = self.word[j+1], self.word[j]
+                if self.word[j] > self.word[j + 1]:
+                    self.word[j], self.word[j + 1] = self.word[j + 1], self.word[j]
                     curr_state += 1
 
         self.max_state = curr_state

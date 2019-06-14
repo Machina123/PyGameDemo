@@ -1,6 +1,7 @@
-import os, pygame
+import os
+import pygame
 
-RESOLUTION = (1920,1080)
+RESOLUTION = (1920, 1080)
 WINDOW_TITLE = "Projekt zaliczeniowy"
 TICKRATE = 30
 ALPHABET = "ABCDEFGHJKNOPRSXZ"
@@ -36,5 +37,6 @@ TEXT_LOSE_SUB = "Nie udało Ci się otworzyć skrzyni w odpowiedniej ilości ruc
 
 TEXT_QUIT_HINT = "Aby wyjść, naciścij ESCAPE"
 
-def get_path(relative_path = ""):
+
+def get_path(relative_path=""):
     return os.path.join(os.getcwd(), relative_path)

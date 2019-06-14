@@ -1,5 +1,7 @@
-from gamelogic import constants
 import random
+
+from gamelogic import constants
+
 
 class RNGsus():
 

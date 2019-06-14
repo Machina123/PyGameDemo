@@ -1,11 +1,11 @@
-from gamelogic.rngsus import RNGsus
-from gamelogic.bubblesort import BubbleSort
 from gamelogic import constants
-import time
+from gamelogic.bubblesort import BubbleSort
+from gamelogic.rngsus import RNGsus
+
 
 class GameState():
 
-    def __init__(self, word = ""):
+    def __init__(self, word=""):
         self.__word = word
         self.__state = word
         self.__sorter = BubbleSort(self.__word)
@@ -40,7 +40,7 @@ class GameState():
     def get_starting_word(self):
         return self.__word
 
-    def move_frame(self, direction:str):
+    def move_frame(self, direction: str):
         if direction == constants.MOVE_LEFT_ACTION:
             if self.__frame_pos - 1 < 0:
                 return
@@ -68,6 +68,4 @@ class GameState():
 
     @staticmethod
     def initialize():
-        return GameState(
-            word=RNGsus.get_word_unique()
-        )
+        return GameState(word=RNGsus.get_word_unique())
