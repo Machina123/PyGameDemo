@@ -27,7 +27,6 @@ def prepare_game():
 def event_handler():
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN:
-            print(event)
             if event.button == 1:
                 action = gui.check_click(event.pos)
                 if action == constants.BUTTON_LEFT_ACTION:
@@ -48,13 +47,18 @@ def event_handler():
                 sys.exit(0)
 
 def game_loop():
-    gamestate.tick()
     if gui is not None:
         gui.draw(screen)
+        gui.update_swaps_left_text(gamestate.get_moves_left())
 
 prepare_game()
 # main loop
 while(True):
     event_handler()
     game_loop()
+    if gamestate.is_finished():
+        if gamestate.is_successfully_finished():
+            gui.draw_win_screen()
+        else:
+            gui.draw_lose_screen()
     clock.tick(constants.TICKRATE)
