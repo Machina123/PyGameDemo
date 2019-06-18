@@ -10,7 +10,6 @@ class GameState():
         self.__state = word
         self.__sorter = BubbleSort(self.__word)
         self.__curr_state = 0
-        self.__tickcount = 0
         self.__frame_pos = 0
         self.__finished = False
         self.__finish_success = False
